@@ -1,5 +1,5 @@
 {
-  "name": "@rwaterman/utils-ts",
+  "name": "@rwaterman/ricks-utils",
   "version": "1.0.0",
   "description": "Typed, small, dependency-free, lightweight async helper/utility functions we use all the time",
   "type": "module",
@@ -32,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rwaterman/utils-ts.git"
+    "url": "git+https://github.com/rwaterman/ricks-utils-ts.git"
   },
   "keywords": [
     "TypeScript",
