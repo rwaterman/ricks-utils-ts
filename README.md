@@ -12,7 +12,12 @@ npm install ricks-utils
 
 - `to(promise)` — resolves to `{ res, err }` instead of throwing
 - `delay(ms)` — promise that resolves after `ms`
-- `retry({ yourAsyncFn, numTimes })` — retries an async function, returns `{ res, errors }`
+- `timeout(promise, ms)` — rejects with `TimeoutError` if the promise takes longer than `ms`
+- `retry({ yourAsyncFn, numTimes, delayMs, factor, maxDelayMs, shouldRetry })` — retries with optional exponential backoff, returns `{ res, errors }`
+- `poll({ fn, until, everyMs, timeoutMs })` — calls `fn` every `everyMs` until `until(res)` is true; rejects with `TimeoutError` after `timeoutMs`
+- `debounce(fn, ms)` — trailing-edge debounce with `.cancel()` and `.flush()`
+- `memoize(fn, { ttlMs, key })` — caches by arguments; async-aware (shares in-flight promises, never caches rejections)
+- `requireEnv(name)` — returns `process.env[name]` or throws naming the missing variable
 
 ## Development
 
