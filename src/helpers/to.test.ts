@@ -1,7 +1,8 @@
-import { to } from './to';
+import { expect, test } from 'vitest';
+import { to } from './to.ts';
 
 test('to async helper returns the appropriate response on success', async () => {
-  const {  err, res } = await to(Promise.resolve(true));
+  const { err, res } = await to(Promise.resolve(true));
 
   expect(err).toBeNull();
   expect(res).toBe(true);
