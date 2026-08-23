@@ -8,19 +8,19 @@
     "src/lib/**/*"
   ],
   "devDependencies": {
-    "@types/jest": "27.0.x",
-    "@types/node": "17.0.x",
-    "@typescript-eslint/eslint-plugin": "5.8.x",
-    "@typescript-eslint/parser": "5.8.x",
-    "eslint": "8.5.x",
+    "@types/jest": "30.0.x",
+    "@types/node": "26.2.x",
+    "@typescript-eslint/eslint-plugin": "8.67.x",
+    "@typescript-eslint/parser": "8.67.x",
+    "eslint": "10.8.x",
     "eslint-config-airbnb-base": "15.0.x",
-    "eslint-config-airbnb-typescript": "16.1.x",
-    "eslint-plugin-import": "2.25.x",
-    "eslint-plugin-jest": "25.3.x",
-    "jest": "27.4.x",
-    "ts-jest": "27.1.x",
-    "ts-node": "10.4.x",
-    "typescript": "4.5.x"
+    "eslint-config-airbnb-typescript": "18.0.x",
+    "eslint-plugin-import": "2.32.x",
+    "eslint-plugin-jest": "29.16.x",
+    "jest": "30.4.x",
+    "ts-jest": "29.4.x",
+    "ts-node": "10.9.x",
+    "typescript": "7.0.x"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
