@@ -60,3 +60,19 @@ test('memoize uses a custom key function', () => {
   memoized({ id: '1', name: 'b' });
   expect(fn).toHaveBeenCalledTimes(1);
 });
+
+test('memoize keys undefined and null arguments separately', () => {
+  const fn = vi.fn((value: unknown) => value);
+  const memoized = memoize(fn);
+
+  memoized(undefined);
+  memoized(null);
+  expect(fn).toHaveBeenCalledTimes(2);
+});
+
+test('memoize accepts bigint arguments', () => {
+  const memoized = memoize((value: bigint) => value * 2n);
+
+  expect(memoized(2n)).toBe(4n);
+  expect(memoized(2n)).toBe(4n);
+});

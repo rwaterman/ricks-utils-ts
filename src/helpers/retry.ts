@@ -17,7 +17,7 @@ export async function retry<T>(params: RetryParams<T>): Promise<{ res: T | null;
   for (let attempt = 0; attempt < numTimes; ++attempt) {
     if (attempt > 0 && delayMs > 0) await delay(Math.min(delayMs * factor ** (attempt - 1), maxDelayMs));
 
-    const { err, res } = await to(params.yourAsyncFn());
+    const { err, res } = await to((async () => params.yourAsyncFn())());
 
     if (err === null) return { res, errors };
     errors.push(err);
