@@ -1,8 +1,12 @@
-# utils-ts
+# ricks-utils
 
-[![CI](https://github.com/rwaterman/utils-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/rwaterman/utils-ts/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/ricks-utils)](https://www.npmjs.com/package/ricks-utils) [![CI](https://github.com/rwaterman/utils-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/rwaterman/utils-ts/actions/workflows/ci.yml)
 
 Typed, small, dependency-free, lightweight async helper/utility functions we use all the time.
+
+```sh
+npm install ricks-utils
+```
 
 ## Functions
 
