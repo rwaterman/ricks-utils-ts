@@ -29,3 +29,14 @@ test('timeout clears its timer once the promise settles', async () => {
 
   expect(vi.getTimerCount()).toBe(0);
 });
+
+test.each([Infinity, 2 ** 31])('timeout with %d ms never times out', async (ms) => {
+  const pending = timeout(
+    delay(50).then(() => 'ok'),
+    ms,
+  );
+  await vi.advanceTimersByTimeAsync(50);
+
+  await expect(pending).resolves.toBe('ok');
+  expect(vi.getTimerCount()).toBe(0);
+});
