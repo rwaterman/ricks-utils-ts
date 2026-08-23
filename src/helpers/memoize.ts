@@ -1,6 +1,14 @@
 export interface MemoizeOptions<A extends unknown[]> {
   ttlMs?: number; // default: cache forever
-  key?: (...args: A) => string; // default: JSON.stringify(args)
+  key?: (...args: A) => string; // default: JSON.stringify(args), with undefined and bigint made serializable
+}
+
+function defaultKey(...args: unknown[]): string {
+  return JSON.stringify(args, (_, value: unknown) => {
+    if (value === undefined) return '\u0000undefined';
+    if (typeof value === 'bigint') return `${value}n`;
+    return value;
+  });
 }
 
 export function memoize<A extends unknown[], R>(
@@ -8,7 +16,7 @@ export function memoize<A extends unknown[], R>(
   options: MemoizeOptions<A> = {},
 ): (...args: A) => R {
   const cache = new Map<string, { value: R; expiresAt: number }>();
-  const keyOf = options.key ?? ((...args: A) => JSON.stringify(args));
+  const keyOf = options.key ?? defaultKey;
 
   return (...args: A): R => {
     const key = keyOf(...args);

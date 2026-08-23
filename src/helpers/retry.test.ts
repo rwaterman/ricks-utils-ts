@@ -82,3 +82,17 @@ test('retry stops early when shouldRetry returns false', async () => {
   expect(count).toBe(2);
   expect(res.errors).toEqual(['transient', 'fatal']);
 });
+
+test('retry retries a yourAsyncFn that throws synchronously', async () => {
+  let count = 0;
+  const res = await retry({
+    numTimes: 3,
+    yourAsyncFn: () => {
+      count++;
+      throw new Error('sync');
+    },
+  });
+
+  expect(count).toBe(3);
+  expect(res.errors).toHaveLength(3);
+});
