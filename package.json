@@ -1,41 +1,38 @@
 {
-  "name": "js-async-utils",
-  "version": "0.1.0",
-  "description": "Typed, Small, dependency-free, lightweight async helper/utility functions we use all the time",
-  "main": "src/lib/index.js",
+  "name": "@rwaterman/utils-ts",
+  "version": "1.0.0",
+  "description": "Typed, small, dependency-free, lightweight async helper/utility functions we use all the time",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
   "types": "lib/index.d.ts",
   "files": [
-    "src/lib/**/*"
+    "lib/**/*"
   ],
-  "devDependencies": {
-    "@types/jest": "30.0.x",
-    "@types/node": "26.2.x",
-    "@typescript-eslint/eslint-plugin": "8.67.x",
-    "@typescript-eslint/parser": "8.67.x",
-    "eslint": "10.8.x",
-    "eslint-config-airbnb-base": "15.0.x",
-    "eslint-config-airbnb-typescript": "18.0.x",
-    "eslint-plugin-import": "2.32.x",
-    "eslint-plugin-jest": "29.16.x",
-    "jest": "30.4.x",
-    "ts-jest": "29.4.x",
-    "ts-node": "10.9.x",
-    "typescript": "7.0.x"
+  "engines": {
+    "node": ">=24"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "format": "prettier --write \"./src/**/*.ts\"",
-    "lint": "eslint \"./src/**/*.ts\" --fix",
+    "build": "tsc -p tsconfig.build.json",
+    "format": "prettier --write \"src/**/*.ts\" \"*.{json,md}\"",
+    "lint": "oxlint --type-aware --deny-warnings src",
     "postversion": "git push && git push --tags",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
-    "test": "jest --config ./jestconfig.json",
+    "test": "vitest run",
     "version": "npm run format && git add -A src"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rwaterman/js-async-utils.git"
+    "url": "git+https://github.com/rwaterman/utils-ts.git"
   },
   "keywords": [
     "TypeScript",
@@ -43,5 +40,13 @@
     "Async"
   ],
   "author": "Rick Waterman",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "oxlint": "^1.79.0",
+    "oxlint-tsgolint": "^7.0.2001",
+    "prettier": "^3.9.6",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
 }

@@ -1,4 +1,5 @@
-import { retry } from './retry';
+import { expect, test } from 'vitest';
+import { retry } from './retry.ts';
 
 test('retry calls the async function n times based on the parameter (default)', async () => {
   let count = 0;
@@ -9,7 +10,6 @@ test('retry calls the async function n times based on the parameter (default)', 
 
   expect(count).toBe(3);
 });
-
 
 test('retry calls the async function n times based on the parameter (non-default)', async () => {
   let count = 0;
@@ -41,4 +41,3 @@ test('retry returns all errors and the response if it eventually succeeds', asyn
   expect(res.res).toBe('success');
   expect(callCount).toBe(2);
 });
-

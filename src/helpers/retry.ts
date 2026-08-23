@@ -1,4 +1,4 @@
-import { to } from './to';
+import { to } from './to.ts';
 
 export interface RetryParams {
   // timeout?: number; // default is 30s TODO
@@ -6,7 +6,7 @@ export interface RetryParams {
   yourAsyncFn: () => Promise<any>; // the async function that you are calling, like this, before passing yourAsyncFn(param1, ...)
 }
 
-export async function retry(params: RetryParams): Promise<{ res: unknown, errors: Error[] }> {
+export async function retry(params: RetryParams): Promise<{ res: unknown; errors: Error[] }> {
   const errors = [];
 
   for (let i = 0; i < (params.numTimes || 3); ++i) {

@@ -1,4 +1,5 @@
-import { delay } from './delay';
+import { expect, test } from 'vitest';
+import { delay } from './delay.ts';
 
 test('delay waits the appropriate amount of time before returning (shorter amount of time)', async () => {
   const waitTimeMs = 100;
