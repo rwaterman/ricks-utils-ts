@@ -1,24 +1,20 @@
-import { expect, test } from 'vitest';
+import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import { delay } from './delay.ts';
 
-test('delay waits the appropriate amount of time before returning (shorter amount of time)', async () => {
-  const waitTimeMs = 100;
+beforeEach(() => vi.useFakeTimers());
+afterEach(() => vi.useRealTimers());
 
-  const dateStart = Date.now();
-  await delay(waitTimeMs);
-  const dateEnd = Date.now();
+test.each([100, 500])('delay resolves only after %i ms', async (ms) => {
+  let resolved = false;
+  const pending = (async () => {
+    await delay(ms);
+    resolved = true;
+  })();
 
-  expect(dateEnd - dateStart).toBeGreaterThanOrEqual(100);
-  expect(dateEnd - dateStart).toBeLessThan(200);
-});
+  await vi.advanceTimersByTimeAsync(ms - 1);
+  expect(resolved).toBe(false);
 
-test('delay waits the appropriate amount of time before returning (shorter amount of time)', async () => {
-  const waitTimeMs = 500;
-
-  const dateStart = Date.now();
-  await delay(waitTimeMs);
-  const dateEnd = Date.now();
-
-  expect(dateEnd - dateStart).toBeGreaterThanOrEqual(500);
-  expect(dateEnd - dateStart).toBeLessThan(600);
+  await vi.advanceTimersByTimeAsync(1);
+  await pending;
+  expect(resolved).toBe(true);
 });
