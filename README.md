@@ -29,6 +29,7 @@ Node 24+, TypeScript 7 (native compiler), Vitest, oxlint.
 
 ```sh
 npm ci
+pre-commit install
 npm test
 npm run lint
 npm run build
